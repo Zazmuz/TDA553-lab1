@@ -1,20 +1,21 @@
 import java.awt.*;
 
-public class Volvo240 extends Car{
+public class Volvo240 extends Car {
 
     protected double trimFactor;
     
-    public Volvo240(double trimFactor){
-        super(4, Color.black, 100, "Volvo240");
-        this.trimFactor = trimFactor;
+    public Volvo240(double trimFactor) {
+        super("Volvo240", Color.black, 100, 4);
+        if (trimFactor < 0) this.trimFactor = 0;
+        else this.trimFactor = trimFactor;
     }
 
-    protected double speedFactor(){
-        return enginePower * 0.01 * trimFactor;
+    protected double speedFactor() {
+        return getEnginePower() * 0.01 * trimFactor;
     }
 
-    protected void incrementSpeed(double amount){
-	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+    protected void incrementSpeed(double amount) {
+	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
     }
 
     protected void decrementSpeed(double amount) {

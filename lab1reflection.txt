@@ -1,0 +1,42 @@
+1. Explain how you chose the inheritance hierarchy in Task 1, making reference to the Open-Closed Principle.
+
+    At first, the code had a lot of redundancy (non-DRY code), and it did not follow the open-closed principle.
+    The reason we want to follow it is to easily allow us to extend (create new car types) without modifying
+    (copying and changing) existing source code, as that is a waste of time and bug-prone. We accomplish this by
+    creating the abstract class "car", and allowing Volvo240 and Saab95 to inherit it. This is because inheritance
+    symbolizes a parent-child relationship of increasing level of specified behaviour: a Volvo240 is a car, but it is
+    also a lot of other things. We chose to make Car abstract, since we want to keep our code DRY, while still forcing
+    inheriting classes to implement incrementSpeed/decrementSpeed. This is also because it doesn't make sense to have a
+    "standard" car with has any engine specifications. After we created the class Car, Saab95 and Volvo240 now only
+    need to extend behaviour, and can reuse 90% of the code in car.
+
+
+2. Explain how you implemented each of the sanity checks in Task 4.
+
+    1st check:
+    Gas and brake only accepting values between 0 and 1 (0% to 100%) was implemented by two simple if-statements in the Car class.
+
+    if (amount >= 0 && amount <= 1) {
+        incrementSpeed(amount);
+    }
+
+    if (amount >= 0 && amount <= 1) {
+        decrementSpeed(amount);
+    }
+
+    We only call the incrementSpeed and decrementSpeed methods if the amount is between 0 and 1. If it is not, we do nothing.
+    This means that gas and brake will only have an effect if the amount is between 0 and 1.
+
+
+    2nd check:
+    currentSpeed being kept within the range, 0 to enginePower, was done by realizing that the only way for currentSpeed to change was through the incrementSpeed and decrementSpeed methods.
+    Therefore, we could simply add a check in these methods to make sure that currentSpeed is kept within the range 0 to enginePower.
+    The check is done by using the Math.min and Math.max methods.If the currentSpeed is less than 0, we set it to 0. If it is greater than enginePower, we set it to enginePower.
+
+
+    3rd and 4th check:
+    The third and fourth check are very similar in nature, so I will explain them together.
+    These are done by really making sure that gas and brake only accept values above 0, which is done by the previous if-statements in the Car class.
+    On a car class level this is enough but since we are adding special behavior in the Saab95 and Volvo240 classes relating to incrementSpeed and decrementSpeed,
+    we could potentially be introducing edge cases. The only edge case found (and probably the only one overall) is when trimFactor is set to a negative value.
+    This is circumvented by making sure that the trimFactor is always above 0 since otherwise it would mean trimming it backwards which is not possible.

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThrows;
 
 public class CarTests {
 
-
     @Test
     public void test_saab95_gas() {
         Saab95 saab1 = new Saab95();

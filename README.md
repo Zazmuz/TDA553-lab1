@@ -1,3 +1,3 @@
-Rasmus Hulthe
-Joshua Andersson
+Rasmus Hulthe,
+Joshua Andersson,
 Christian Mattsson

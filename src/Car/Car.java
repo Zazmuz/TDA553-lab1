@@ -22,7 +22,7 @@ abstract public class Car implements Movable {
         this.modelName = modelName;
         this.color = color;
         this.nrDoors = nrDoors;
-        this.enginePower = enginePower;
+        setEnginePower(enginePower);
         this.turningRate = turningRate;
         stopEngine();
     }
@@ -61,7 +61,7 @@ abstract public class Car implements Movable {
 
     public double getEnginePower() { return enginePower; }
 
-    protected void setEnginePower(double value) { enginePower = value; }
+    protected void setEnginePower(double value) { enginePower = Math.max(value, 0); }
 
     public double getCurrentSpeed() { return currentSpeed; }
 

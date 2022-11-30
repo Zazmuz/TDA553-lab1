@@ -38,7 +38,7 @@ public class CarTest {
     }
 
     @Test
-    public void test_saab95_turn() {
+    public void test_saab95_turn_left() {
         Saab95 saab1 = new Saab95();
         saab1.turnLeft(90);
         saab1.gas(0.01);
@@ -46,6 +46,17 @@ public class CarTest {
 
         assertEquals(0, saab1.getXCoordinate(), 0.00001);
         assertTrue(saab1.getYCoordinate() > 0);
+    }
+
+    @Test
+    public void test_saab95_turn_right() {
+        Saab95 saab1 = new Saab95();
+        saab1.turnRight(90);
+        saab1.gas(0.01);
+        saab1.move(saab1.getCurrentSpeed());
+
+        assertEquals(0, saab1.getXCoordinate(), 0.00001);
+        assertTrue(saab1.getYCoordinate() < 0);
     }
 
     @Test
@@ -131,4 +142,5 @@ public class CarTest {
 
         assertTrue(saab.getCurrentSpeed() <= saab.getEnginePower());
     }
+
 }

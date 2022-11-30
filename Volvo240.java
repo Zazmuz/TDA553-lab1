@@ -1,5 +1,6 @@
 import java.awt.*;
 
+
 public class Volvo240 extends Car {
 
     protected double trimFactor;

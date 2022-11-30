@@ -5,7 +5,7 @@ import java.awt.*;
 import src.Movable;
 
 
-abstract public class Car implements Movable {
+public abstract class Car implements Movable {
 
     private double xCoordinate = 0; // The x coordinate of the car
     private double yCoordinate = 0; // The y coordinate of the car

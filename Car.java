@@ -1,5 +1,6 @@
 import java.awt.*;
 
+
 abstract public class Car implements Movable {
 
     protected double xCoordinate = 0; // The x coordinate of the car
@@ -20,16 +21,19 @@ abstract public class Car implements Movable {
         stopEngine();
     }
 
+    @Override
     public void move(double currentSpeed) {
         xCoordinate += Math.cos(direction)*currentSpeed;
         yCoordinate += Math.sin(direction)*currentSpeed;
     }
 
+    @Override
     public void turnLeft(double angle) {
         direction += Math.toRadians(angle);
         direction %= Math.PI;
     }
 
+    @Override
     public void turnRight(double angle) {
         direction -= Math.toRadians(angle);
         direction %= Math.PI;

@@ -1,4 +1,8 @@
+package src.CarModels;
+
 import java.awt.*;
+
+import src.Car.Car;
 
 
 public class Volvo240 extends Car {
@@ -6,7 +10,7 @@ public class Volvo240 extends Car {
     protected double trimFactor;
     
     public Volvo240(double trimFactor) {
-        super("Volvo240", Color.black, 100, 4);
+        super("src.CarModels.Volvo240", Color.black, 100, 4);
         if (trimFactor < 0) this.trimFactor = 0;
         else this.trimFactor = trimFactor;
     }

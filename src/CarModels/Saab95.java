@@ -1,4 +1,8 @@
+package src.CarModels;
+
 import java.awt.*;
+
+import src.Car.Car;
 
 
 public class Saab95 extends Car {
@@ -6,7 +10,7 @@ public class Saab95 extends Car {
     private boolean turboOn;
     
     public Saab95(){
-        super("Saab95", Color.red, 125, 2);
+        super("src.CarModels.Saab95", Color.red, 125, 2);
         this.turboOn = false;
     }
 

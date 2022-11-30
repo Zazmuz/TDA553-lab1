@@ -1,4 +1,8 @@
+package src.Car;
+
 import java.awt.*;
+
+import src.Movable;
 
 
 abstract public class Car implements Movable {
@@ -38,6 +42,10 @@ abstract public class Car implements Movable {
         direction -= Math.toRadians(angle);
         direction %= Math.PI;
     }
+
+    public double getXCoordinate() { return xCoordinate; }
+
+    public double getYCoordinate() { return yCoordinate; }
 
     public int getNrDoors() { return nrDoors; }
 

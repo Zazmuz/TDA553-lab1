@@ -7,21 +7,21 @@ import src.Movable;
 
 abstract public class Car implements Movable {
 
-    protected double xCoordinate = 0; // The x coordinate of the car
-    protected double yCoordinate = 0; // The y coordinate of the car
-    protected double direction = 0; // The angle of the car
+    private double xCoordinate = 0; // The x coordinate of the car
+    private double yCoordinate = 0; // The y coordinate of the car
+    private double direction = 0; // The angle of the car
 
-    protected String modelName; // The car model name
-    protected Color color; // Color of the car
-    protected double enginePower; // Engine power of the car
-    protected int nrDoors; // Number of doors on the car
-    protected double currentSpeed; // The current speed of the car
+    private final String modelName; // The car model name
+    private Color color; // Color of the car
+    private final int nrDoors; // Number of doors on the car
+    private double enginePower; // Engine power of the car
+    private double currentSpeed; // The current speed of the car
 
-    public Car(String modelName, Color color, double enginePower, int nrDoors) {
-        this.nrDoors = nrDoors;
-        this.color = color;
-        this.enginePower = enginePower;
+    public Car(String modelName, Color color, int nrDoors, double enginePower) {
         this.modelName = modelName;
+        this.color = color;
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
         stopEngine();
     }
 
@@ -47,23 +47,38 @@ abstract public class Car implements Movable {
 
     public double getYCoordinate() { return yCoordinate; }
 
+    public String getModelName() { return modelName; }
+
+    public Color getColor() { return color; }
+
+    public void setColor(Color color) { this.color = color; }
+
     public int getNrDoors() { return nrDoors; }
 
     public double getEnginePower() { return enginePower; }
 
+    protected void setEnginePower(double value) { enginePower = value; }
+
     public double getCurrentSpeed() { return currentSpeed; }
 
-    public Color getColor() { return color; }
+    protected void setCurrentSpeed(double speed) {
+        currentSpeed = Math.min(speed, getEnginePower());
+        currentSpeed = Math.max(currentSpeed, 0);
+    }
 
-    public void setColor(Color clr) { color = clr; }
+    public void startEngine() { setCurrentSpeed(0.1); }
 
-    public void startEngine() { currentSpeed = 0.1; }
+    public void stopEngine() { setCurrentSpeed(0); }
 
-    public void stopEngine() { currentSpeed = 0; }
+    abstract protected double getSpeedFactor();
 
-    abstract protected void incrementSpeed(double amount);
+    protected void incrementSpeed(double amount) {
+        setCurrentSpeed(getCurrentSpeed() + getSpeedFactor() * amount);
+    }
 
-    abstract protected void decrementSpeed(double amount);
+    protected void decrementSpeed(double amount) {
+        setCurrentSpeed(getCurrentSpeed() - getSpeedFactor() * amount);
+    }
 
     public void gas(double amount) {
         if (0 <= amount && amount <= 1) {
@@ -76,4 +91,5 @@ abstract public class Car implements Movable {
             decrementSpeed(amount);
         }
     }
+
 }

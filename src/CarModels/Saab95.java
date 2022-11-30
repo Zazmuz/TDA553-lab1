@@ -10,7 +10,7 @@ public class Saab95 extends Car {
     private boolean turboOn;
     
     public Saab95(){
-        super("src.CarModels.Saab95", Color.red, 125, 2);
+        super("src.CarModels.Saab95", Color.red, 2, 125);
         this.turboOn = false;
     }
 
@@ -22,16 +22,10 @@ public class Saab95 extends Car {
 	    turboOn = false;
     }
 
-    protected double speedFactor(){
+    @Override
+    protected double getSpeedFactor(){
         double turbo = turboOn ? 1.3 : 1;
-        return enginePower * 0.01 * turbo;
+        return getEnginePower() * 0.01 * turbo;
     }
 
-    protected void incrementSpeed(double amount) {
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
-    }
-
-    protected void decrementSpeed(double amount) {
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
-    }
 }

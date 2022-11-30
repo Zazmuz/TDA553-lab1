@@ -16,36 +16,40 @@ abstract public class Car implements Movable {
     private final int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
+    private final double turningRate; // How much the car turns in degrees
 
-    public Car(String modelName, Color color, int nrDoors, double enginePower) {
+    public Car(String modelName, Color color, int nrDoors, double enginePower, double turningRate) {
         this.modelName = modelName;
         this.color = color;
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
+        this.turningRate = turningRate;
         stopEngine();
     }
 
     @Override
-    public void move(double currentSpeed) {
-        xCoordinate += Math.cos(direction)*currentSpeed;
-        yCoordinate += Math.sin(direction)*currentSpeed;
+    public void move() {
+        xCoordinate += Math.cos(direction) * getCurrentSpeed();
+        yCoordinate += Math.sin(direction) * getCurrentSpeed();
     }
 
     @Override
-    public void turnLeft(double angle) {
-        direction += Math.toRadians(angle);
-        direction %= Math.PI;
+    public void turnLeft() {
+        direction += Math.toRadians(turningRate);
+        direction %= 2 * Math.PI;
     }
 
     @Override
-    public void turnRight(double angle) {
-        direction -= Math.toRadians(angle);
-        direction %= Math.PI;
+    public void turnRight() {
+        direction -= Math.toRadians(turningRate);
+        direction %= 2 * Math.PI;
     }
 
     public double getXCoordinate() { return xCoordinate; }
 
     public double getYCoordinate() { return yCoordinate; }
+
+    public double getDirection() { return direction; }
 
     public String getModelName() { return modelName; }
 
@@ -66,11 +70,13 @@ abstract public class Car implements Movable {
         currentSpeed = Math.max(currentSpeed, 0);
     }
 
+    abstract protected double getSpeedFactor();
+
+    public double getTurningRate() { return turningRate; }
+
     public void startEngine() { setCurrentSpeed(0.1); }
 
     public void stopEngine() { setCurrentSpeed(0); }
-
-    abstract protected double getSpeedFactor();
 
     protected void incrementSpeed(double amount) {
         setCurrentSpeed(getCurrentSpeed() + getSpeedFactor() * amount);

@@ -2,10 +2,10 @@ package src;
 
 public interface Movable {
 
-    void move(double currentSpeed);
+    void move();
 
-    void turnLeft(double angle);
+    void turnLeft();
 
-    void turnRight(double angle);
+    void turnRight();
 
 }

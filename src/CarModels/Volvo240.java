@@ -10,7 +10,7 @@ public class Volvo240 extends Car {
     protected double trimFactor;
     
     public Volvo240(double trimFactor) {
-        super("src.CarModels.Volvo240", Color.black, 4, 100);
+        super("Volvo240", Color.black, 4, 100);
         if (trimFactor < 0) this.trimFactor = 0;
         else this.trimFactor = trimFactor;
     }

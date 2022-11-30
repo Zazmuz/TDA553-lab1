@@ -38,5 +38,5 @@
     The third and fourth check are very similar in nature, so I will explain them together.
     These are done by really making sure that gas and brake only accept values above 0, which is done by the previous if-statements in the Car class.
     On a car class level this is enough but since we are adding special behavior in the Saab95 and Volvo240 classes relating to incrementSpeed and decrementSpeed,
-    we could potentially be introducing edge cases. The only edge case found (and probably the only one overall) is when trimFactor is set to a negative value.
-    This is circumvented by making sure that the trimFactor is always above 0 since otherwise it would mean trimming it backwards which is not possible.
+    we could potentially be introducing edge cases. One edge case found is when trimFactor is set to a negative value. Another is when enginePower is negative.
+    This is circumvented by making using setters which ensure that they are always positive, otherwise it would mean trimming it backwards/having a reversed engine, which is not possible.

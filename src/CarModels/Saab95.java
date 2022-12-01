@@ -13,10 +13,4 @@ public class Saab95 extends TurboCar {
         this.setTurboOn();
     }
 
-    @Override
-    protected double getSpeedFactor(){
-        double turbo = getTurboOn() ? 1.3 : 1;
-        return getEnginePower() * 0.01 * turbo;
-    }
-
 }

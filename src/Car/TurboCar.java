@@ -20,4 +20,9 @@ public abstract class TurboCar extends Car {
 
     public boolean getTurboOn() { return turboOn; }
 
+    @Override
+    protected double getSpeedFactor(){
+        double turbo = getTurboOn() ? 1.3 : 1;
+        return getEnginePower() * 0.01 * turbo;
+    }
 }

@@ -22,10 +22,8 @@ public abstract class TurboCar extends Car {
 
     public boolean getTurboOn() { return turboOn; }
 
-    private void setTurbo(double turbo) {
-        if (turbo >= 0) {
-            this.turbo = turbo;
-        }
+    private void setTurbo(double value) {
+        this.turbo = Math.max(value, 0);
     }
 
     public double getTurbo() {

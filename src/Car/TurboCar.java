@@ -5,9 +5,11 @@ import java.awt.*;
 public abstract class TurboCar extends Car {
 
     private boolean turboOn;
+    private double turbo;
 
-    public TurboCar(String modelName, Color color, int nrDoors, double enginePower, double turningRate) {
+    public TurboCar(String modelName, Color color, int nrDoors, double enginePower, double turningRate, double turbo) {
         super(modelName, color, nrDoors, enginePower, turningRate);
+        setTurbo(turbo);
     }
 
     public void setTurboOn(){
@@ -20,9 +22,13 @@ public abstract class TurboCar extends Car {
 
     public boolean getTurboOn() { return turboOn; }
 
-    @Override
-    protected double getSpeedFactor(){
-        double turbo = getTurboOn() ? 1.3 : 1;
-        return getEnginePower() * 0.01 * turbo;
+    private void setTurbo(double turbo) {
+        if (turbo >= 0) {
+            this.turbo = turbo;
+        }
+    }
+
+    public double getTurbo() {
+        return getTurboOn() ? turbo : 1;
     }
 }

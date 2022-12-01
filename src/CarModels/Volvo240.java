@@ -2,7 +2,6 @@ package src.CarModels;
 
 import java.awt.*;
 
-import src.Car.Car;
 import src.Car.TrimmedCar;
 
 

@@ -1,0 +1,50 @@
+
+1. Your design probably has a type called something like Car or Vehicle that is a supertype to both Volvo and Scania. What is the contract for gas() and brake() in this type? Do the implementations of gas() and brake() in both Volvo and Scania follow this contract? Does your design follow the Liskov Substitution Principle?
+    When gas() is called it simulates pressing the gas pedal, same with brake() except it simulates
+    pressing down the brake pedal. The contract here is between the different car models and the
+    superClass car. The contract is based around a need to know basis
+    where we try to keep as many things private as possible. This is good practice because it helps with
+    In this case the client is the different implementations of car, mainly Scania and Saab84,
+    and the component is Car. The clients expect gas to accelerate the car, and break to deaccelerate it.
+
+    Our design follows LSP (Language Server Protocol) (Liskov Substitution Principle)
+    pretty well by the fact that we don't really overwrite and change too much between subclasses, only
+    build on what's previously implemented. One example where this is very noticeable is in the car transport and car
+    repair shop. As we can see, there are no problems upcasting different cars to vehicle and storing them in a common array.
+    One would even be able to drive them just fine, as we've abstracted the logic of gas and brake- what we want to do, not how the class
+    should decide to do it.
+
+
+2. How did you handle duplicated code between Scania, the car transporters and the repair shops? Explain how you decided when to use subclassing and when to use composition and delegation.
+    In order to eliminate the duplicated code related to the "platform" that both the Scania dumptruck and the car
+    transporters share, we decided to firstly create a "vehicle mod"-class called AngledPlatform which essentially is
+    just a class that holds all the logic related to an elevating/angling device you can attach to a vehicle. Secondly,
+    we created an abstract class called TruckWithAngledPlatform which is an abstraction of a truck that has this
+    vehicle mod. This class owns an instance of the AngledPlatform class and delegates the related functionality to it.
+    The difference between Scania and the car transporters is that the Scania truck includes methods for setting the
+    angle of the opening to a specific value, while the car transporters only expose methods for opening/closing the
+    opening (setting the angle to either 0 or the max angle).
+
+    The reason that we went for composition/delegation over subclassing
+
+    dependency injection - stack ta bort ospecifik, hashset specifik
+    hur placerar vi ut randomly efteråt på ett bra sätt
+
+
+3. Did you need to modify the design from lab 1 in order to make these extensions? If so, how could you have noticed that your design from Lab 1 did not follow the Open-Closed Principle before you started working on Lab 2?
+    First off, we decided to change Saab95 and Volvo240.
+    This was planned beforehand and not due to anything in lab 2, as we deemed it cleaner to use a composition based
+    approach to add the behaviour instead of inheritance (we want to be able to have a trimmed turbo dumptruck).
+    This change is more related to being DRY than open-closed though. We also decided to change the behaviour in gas and
+    brake, where instead of doing nothing if the value was out of range, we would instead clamp it. One could argue that
+    this could be changed to follow the open-closed principle, for example using an abstract method validate_input,
+    or using dependency injection. However, at some point we have to draw a line, and we think input validation in
+    projects of this scope, it's simply not worth it. The biggest changes we made to old code was that we changed it so
+    that Vehicle no longer used xCoordinate and yCoordinate and instead used a new class called Vector2D.
+    The reason is that we realized that we wanted to easily compute distances between objects. Theoretically speaking,
+    this change did follow the open-closed principle, as we could have solved the problem by extending it using a custom
+    math class with a function distance(x_a,y_a,x_b,y_b). If the codebase was larger, this is probably what we would have
+    done. However, since we wrote the code using setters and getters, it was a very pain-free change to completely change
+    systems. This could have been avoided by realizing beforehand that we should group the x and y coordinate in a class
+    so that we can easily perform operations on them, as they are strongly related.
+

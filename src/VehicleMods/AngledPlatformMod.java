@@ -22,8 +22,10 @@ public abstract class AngledPlatformMod {
 
     public double getMaxAngle() { return maxAngle; }
 
-    protected void setAngle(double angle) {
-        if (0 <= angle && angle <= maxAngle) {
+    public void setAngle(double angle) {
+        if (canBeMoved()) {
+            angle = Math.min(angle, maxAngle);
+            angle = Math.max(angle, 0);
             currentAngle = angle;
         }
     }

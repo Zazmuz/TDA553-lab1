@@ -20,11 +20,12 @@ public abstract class TruckWithAngledPlatform extends Vehicle {
         };
     }
 
-    protected AngledPlatformMod getPlatformMod() {
+    public AngledPlatformMod getPlatformMod() {
         return platformMod;
     }
 
     protected boolean canDrive() {
         return !getPlatformMod().isElevated();
     }
+
 }

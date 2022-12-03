@@ -5,8 +5,7 @@ import java.awt.*;
 
 public abstract class Vehicle implements Movable {
 
-    private double xCoordinate = 0; // The x coordinate of the vehicle
-    private double yCoordinate = 0; // The y coordinate of the vehicle
+    private Vector2D position; // The position of the vehicle
     private double direction = 0; // The angle of the vehicle
 
     private final String modelName; // The car model name
@@ -22,13 +21,14 @@ public abstract class Vehicle implements Movable {
         this.nrDoors = nrDoors;
         setEnginePower(enginePower);
         this.turningRate = turningRate;
+        this.position = new Vector2D(0,0);
         stopEngine();
     }
 
     @Override
     public void move() {
-        xCoordinate += Math.cos(direction) * getCurrentSpeed();
-        yCoordinate += Math.sin(direction) * getCurrentSpeed();
+        position.x += Math.cos(direction) * getCurrentSpeed();
+        position.y += Math.sin(direction) * getCurrentSpeed();
     }
 
     @Override
@@ -43,9 +43,9 @@ public abstract class Vehicle implements Movable {
         direction %= 2 * Math.PI;
     }
 
-    public double getXCoordinate() { return xCoordinate; }
+    public double getXCoordinate() { return position.x; }
 
-    public double getYCoordinate() { return yCoordinate; }
+    public double getYCoordinate() { return position.y; }
 
     public double getDirection() { return direction; }
 

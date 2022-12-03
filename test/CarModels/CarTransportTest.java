@@ -2,7 +2,7 @@ package test.CarModels;
 
 import org.junit.Test;
 
-import src.Vehicle;
+
 import src.VehicleModels.CarTransport;
 import src.VehicleModels.Saab95;
 

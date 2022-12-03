@@ -85,15 +85,15 @@ public abstract class Vehicle implements Movable {
     }
 
     public void gas(double amount) {
-        if (0 <= amount && amount <= 1) {
-            incrementSpeed(amount);
-        }
+        amount = Math.min(amount, 1);
+        amount = Math.max(amount, 0);
+        incrementSpeed(amount);
     }
 
     public void brake(double amount) {
-        if (0 <= amount && amount <= 1) {
-            decrementSpeed(amount);
-        }
+        amount = Math.min(amount, 1);
+        amount = Math.max(amount, 0);
+        decrementSpeed(amount);
     }
 
 }

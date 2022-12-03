@@ -1,4 +1,4 @@
-package test.Car;
+package test.CarModels;
 
 import org.junit.Test;
 import src.CarModels.TestCar;
@@ -91,7 +91,11 @@ public class TestCarTest {
         car.gas(1.1);
         car.move();
 
-        assertEquals(0, car.getCurrentSpeed(), 0.0);
+        TestCar car2 = new TestCar(1.25);
+        car2.gas(1);
+        car2.move();
+
+        assertEquals(car2.getCurrentSpeed(), car.getCurrentSpeed(), 0.0);
     }
 
 

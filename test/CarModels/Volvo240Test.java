@@ -1,4 +1,4 @@
-package test.Car;
+package test.CarModels;
 
 import org.junit.Test;
 import src.CarModels.Volvo240;

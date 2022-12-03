@@ -2,7 +2,7 @@ package src.CarModels;
 
 import java.awt.*;
 
-import src.Car.TrimmedCar;
+import src.Cars.TrimmedCar;
 
 
 public class Volvo240 extends TrimmedCar {
@@ -13,6 +13,6 @@ public class Volvo240 extends TrimmedCar {
 
     @Override
     protected double getSpeedFactor() {
-        return getEnginePower() * 0.01 * getTrimFactor();
+        return getEnginePower() * 0.01 * getTrimMod().getTrimFactor();
     }
 }

@@ -1,14 +1,12 @@
-package src.Car;
+package src.VehicleMods;
 
-import java.awt.*;
 
-public abstract class TurboCar extends Car {
+public class TurboMod {
 
     private boolean turboOn;
     private double turbo;
 
-    public TurboCar(String modelName, Color color, int nrDoors, double enginePower, double turningRate, double turbo) {
-        super(modelName, color, nrDoors, enginePower, turningRate);
+    public TurboMod(double turbo) {
         setTurbo(turbo);
     }
 
@@ -29,4 +27,5 @@ public abstract class TurboCar extends Car {
     public double getTurbo() {
         return getTurboOn() ? turbo : 1;
     }
+
 }

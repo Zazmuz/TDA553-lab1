@@ -1,7 +1,7 @@
 package test.CarModels;
 
 import org.junit.Test;
-import src.CarModels.TestCar;
+import src.VehicleModels.TestCar;
 
 
 import static org.junit.Assert.assertEquals;

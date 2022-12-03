@@ -25,10 +25,25 @@
     angle of the opening to a specific value, while the car transporters only expose methods for opening/closing the
     opening (setting the angle to either 0 or the max angle).
 
-    The reason that we went for composition/delegation over subclassing
+    The reason that we went for composition/delegation over subclassing is that java does not support multiple inheritance.
+    We're planning for the future (probably some principle) by using composition, as we could have a truck with an angled
+    platform which is also trimmed. 
 
-    dependency injection - stack ta bort ospecifik, hashset specifik
-    hur placerar vi ut randomly efteråt på ett bra sätt
+    The biggest point of contention was how we decided to implement the car storing functionality. We didn't find a good way
+    to deduplicate code without breaking principles. One problem was how to ensure that cars are close enough to load and
+    how to place it within a reasonable distance when unloading. The way we would deduplicate the code would be through inheritance
+    or composition. We can't use inheritance, as CarTransport already inherits from the Vehicle tree. 
+    That leaves us with composition. We could create a class called PositionedCarStorage, whose methods load and unload take as parameters
+    the position and acceptable radius. However, this makes it very hard to override behaviour as our classes are not subclasses.
+    For example, we want to unload the car behind the truck, but at random from the repair shop. Of course, we could simply decide
+    also offer a version of load/unload which doesn't take these parameters and don't do anything. But now we end up with almost as
+    much code as before. Another even more glaring issue is the data structure which we store the vehicles in. The CarTransport should
+    use a stack, while the CarRepairShop uses a hashset. This makes it even more difficult to use a common PositionedCarStorage, as
+    the eject method for the CarTransport should not pass which car- it should be the one at the top, while the CarRepairShop should
+    specify which one it is. One way to solve this is using dependency injection and offering two versions the delete method, one
+    which specifies which car to remove and one without. However, add to this with/without position and radius and we end up with
+    4 different eject methods. In light of all of this, it simply felt alot cleaner to have some amount of duplicate code. 
+    However, we might have missed a better way to do this- please let us know! :)
 
 
 3. Did you need to modify the design from lab 1 in order to make these extensions? If so, how could you have noticed that your design from Lab 1 did not follow the Open-Closed Principle before you started working on Lab 2?

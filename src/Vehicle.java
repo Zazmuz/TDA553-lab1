@@ -5,7 +5,7 @@ import java.awt.*;
 
 public abstract class Vehicle implements Movable {
 
-    private Vector2D position; // The position of the vehicle
+    private final Vector2D position; // The position of the vehicle
     private double direction = 0; // The angle of the vehicle
 
     private final String modelName; // The car model name
@@ -46,6 +46,8 @@ public abstract class Vehicle implements Movable {
     public double getXCoordinate() { return position.x; }
 
     public double getYCoordinate() { return position.y; }
+
+    public Vector2D getPosition() { return position; }
 
     public double getDirection() { return direction; }
 

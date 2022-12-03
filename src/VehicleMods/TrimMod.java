@@ -9,8 +9,8 @@ public class TrimMod {
         setTrimFactor(trimFactor);
     }
 
-    public void setTrimFactor(double value) { trimFactor = Math.max(value, 0); }
-
     public double getTrimFactor() { return trimFactor; }
+
+    public void setTrimFactor(double value) { trimFactor = Math.max(value, 0); }
 
 }

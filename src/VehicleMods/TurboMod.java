@@ -10,6 +10,8 @@ public class TurboMod {
         setTurbo(turbo);
     }
 
+    public boolean getTurboOn() { return turboOn; }
+
     public void setTurboOn(){
         turboOn = true;
     }
@@ -18,14 +20,12 @@ public class TurboMod {
         turboOn = false;
     }
 
-    public boolean getTurboOn() { return turboOn; }
+    public double getTurbo() {
+        return getTurboOn() ? turbo : 1;
+    }
 
     private void setTurbo(double value) {
         this.turbo = Math.max(value, 0);
-    }
-
-    public double getTurbo() {
-        return getTurboOn() ? turbo : 1;
     }
 
 }

@@ -1,7 +1,6 @@
 package test.VehicleMods;
 
 import org.junit.Test;
-import src.CarModels.Scania;
 import src.VehicleMods.AngledPlatformMod;
 
 import static org.junit.Assert.assertEquals;

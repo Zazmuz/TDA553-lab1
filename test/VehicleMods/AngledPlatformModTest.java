@@ -12,12 +12,7 @@ public class AngledPlatformModTest {
 
     @Test
     public void test_angled_platform_only_allowed_angles() {
-        AngledPlatformMod platformMod = new AngledPlatformMod(90) {
-            @Override
-            protected boolean canBeMoved() {
-                return true;
-            }
-        };
+        AngledPlatformMod platformMod = new AngledPlatformMod(90);
 
         platformMod.setAngle(-10);
         assertEquals(0, platformMod.getAngle(), 0.0);

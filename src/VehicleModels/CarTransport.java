@@ -67,7 +67,7 @@ public class CarTransport extends TruckWithAngledPlatform {
         double unloadAngle = getDirection() + Math.PI;
         double unloadDistance = Math.random() * loadDistance;
         vehicle.getPosition().x = getPosition().x + Math.cos(unloadAngle) * unloadDistance;
-        vehicle.getPosition().y = getPosition().x + Math.sin(unloadAngle) * unloadDistance;
+        vehicle.getPosition().y = getPosition().y + Math.sin(unloadAngle) * unloadDistance;
 
         return vehicle;
     }

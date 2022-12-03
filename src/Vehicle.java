@@ -1,24 +1,22 @@
-package src.Car;
+package src;
 
 import java.awt.*;
 
-import src.Movable;
 
+public abstract class Vehicle implements Movable {
 
-public abstract class Car implements Movable {
-
-    private double xCoordinate = 0; // The x coordinate of the car
-    private double yCoordinate = 0; // The y coordinate of the car
-    private double direction = 0; // The angle of the car
+    private double xCoordinate = 0; // The x coordinate of the vehicle
+    private double yCoordinate = 0; // The y coordinate of the vehicle
+    private double direction = 0; // The angle of the vehicle
 
     private final String modelName; // The car model name
-    private Color color; // Color of the car
-    private final int nrDoors; // Number of doors on the car
-    private double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
+    private Color color; // Color of the vehicle
+    private final int nrDoors; // Number of doors on the vehicle
+    private double enginePower; // Engine power of the vehicle
+    private double currentSpeed; // The current speed of the vehicle
     private final double turningRate; // How much the car turns in degrees
 
-    public Car(String modelName, Color color, int nrDoors, double enginePower, double turningRate) {
+    public Vehicle(String modelName, Color color, int nrDoors, double enginePower, double turningRate) {
         this.modelName = modelName;
         this.color = color;
         this.nrDoors = nrDoors;

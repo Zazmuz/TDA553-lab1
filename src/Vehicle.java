@@ -11,6 +11,7 @@ public abstract class Vehicle implements Movable {
     private final String modelName; // The car model name
     private Color color; // Color of the vehicle
     private final int nrDoors; // Number of doors on the vehicle
+    private boolean motorOn; // If the engine is powered on or not
     private double enginePower; // Engine power of the vehicle
     private double currentSpeed; // The current speed of the vehicle
     private final double turningRate; // How much the car turns in degrees
@@ -74,12 +75,16 @@ public abstract class Vehicle implements Movable {
 
     public double getTurningRate() { return turningRate; }
 
-    public void startEngine() { setCurrentSpeed(0.1); }
+    public boolean getMotorOn() { return motorOn; }
 
-    public void stopEngine() { setCurrentSpeed(0); }
+    public void setMotorOn(boolean state) { motorOn = state; }
+
+    public void startEngine() { setMotorOn(true); }
+
+    public void stopEngine() { setMotorOn(false); }
 
     protected void incrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() + getSpeedFactor() * amount);
+        if (getMotorOn()) setCurrentSpeed(getCurrentSpeed() + getSpeedFactor() * amount);
     }
 
     protected void decrementSpeed(double amount) {

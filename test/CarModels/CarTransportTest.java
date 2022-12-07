@@ -63,7 +63,7 @@ public class CarTransportTest {
             transport.openRamp();
 
             Saab95 v = new Saab95();
-
+            v.startEngine();
             for (int i = 0; i < 1000; i++) v.gas(1);
             for (int i = 0; i < 10000; i++) v.move();
 
@@ -133,6 +133,7 @@ public class CarTransportTest {
             CarTransport transport = new CarTransport(6);
             transport.openRamp();
             Saab95 car = new Saab95();
+            car.startEngine();
             car.gas(1);
             car.move();
             transport.addToStorage(car);

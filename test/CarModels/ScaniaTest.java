@@ -28,12 +28,11 @@ public class ScaniaTest {
     public void test_platform_angle_not_changeable_when_driving() {
         Scania truck = new Scania();
         double angleBefore = truck.getPlatformAngle();
-
+        truck.startEngine();
         truck.gas(100);
         truck.move();
 
         truck.movePlatform(69);
-
         assertEquals(angleBefore, truck.getPlatformAngle(), 0.0);
     }
 

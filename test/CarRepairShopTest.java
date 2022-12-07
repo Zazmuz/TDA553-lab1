@@ -42,6 +42,7 @@ public class CarRepairShopTest {
             CarRepairShop repairShop = new CarRepairShop("Biltema", new Vector2D(0,0), 1);
 
             Saab95 v = new Saab95();
+            v.startEngine();
 
             for (int i = 0; i < 1000; i++) v.gas(1);
             for (int i = 0; i < 10000; i++) v.move();

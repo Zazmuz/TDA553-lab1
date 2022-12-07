@@ -29,6 +29,7 @@ public class TestCarTest {
     @Test
     public void test_car_turn_left() {
         TestCar car = new TestCar();
+        car.startEngine();
         car.turnLeft();
         car.gas(0.01);
         car.move();
@@ -39,6 +40,7 @@ public class TestCarTest {
     @Test
     public void test_car_turn_right() {
         TestCar car = new TestCar();
+        car.startEngine();
         car.turnRight();
         car.gas(0.01);
         car.move();
@@ -49,6 +51,7 @@ public class TestCarTest {
     @Test
     public void test_car_forward() {
         TestCar car = new TestCar();
+        car.startEngine();
         car.gas(0.01);
         car.move();
 
@@ -59,6 +62,7 @@ public class TestCarTest {
     @Test
     public void test_car_turn_full_circle() {
         TestCar car = new TestCar();
+        car.startEngine();
         for (int i = 0; i < 360/car.getTurningRate(); i++) car.turnLeft();
         car.gas(0.01);
         car.move();
@@ -70,6 +74,7 @@ public class TestCarTest {
     @Test
     public void test_negative_brake_car() {
         TestCar car = new TestCar(1.25);
+        car.startEngine();
         car.brake(-1);
         car.move();
 

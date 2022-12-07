@@ -1,13 +1,11 @@
 
 1. Your design probably has a type called something like Car or Vehicle that is a supertype to both Volvo and Scania. What is the contract for gas() and brake() in this type? Do the implementations of gas() and brake() in both Volvo and Scania follow this contract? Does your design follow the Liskov Substitution Principle?
     When gas() is called it simulates pressing the gas pedal, same with brake() except it simulates
-    pressing down the brake pedal. The contract here is between the different car models and the
-    superClass car. The contract is based around a need to know basis
-    where we try to keep as many things private as possible. This is good practice because it helps with
-    In this case the client is the different implementations of car, mainly Scania and Saab84,
-    and the component is Car. The clients expect gas to accelerate the car, and break to deaccelerate it.
+    pressing down the brake pedal. The method contracts for gas and break is the following:
+    The clients expect gas to accelerate the car when it's allowed to, and break to deaccelerate it.
 
-    Our design follows LSP (Liskov Substitution Principle)
+
+    Our design (now) follows LSP (Liskov Substitution Principle)
     pretty well by the fact that we don't really overwrite and change too much between subclasses, only
     build on what's previously implemented. One example where this is very noticeable is in the car transport and car
     repair shop. As we can see, there are no problems upcasting different cars to vehicle and storing them in a common array.

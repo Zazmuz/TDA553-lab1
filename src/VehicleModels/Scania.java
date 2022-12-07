@@ -13,7 +13,7 @@ public class Scania extends TruckWithAngledPlatform {
 
     @Override
     protected double getSpeedFactor() {
-        return canDrive() ? getEnginePower() * 0.02 : 0;
+        return super.getSpeedFactor() * 0.02;
     }
 
 }

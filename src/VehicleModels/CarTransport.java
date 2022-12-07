@@ -21,7 +21,7 @@ public class CarTransport extends TruckWithAngledPlatform {
 
     @Override
     protected double getSpeedFactor() {
-        return canDrive() ? getEnginePower() * 0.01 : 0;
+        return super.getSpeedFactor() * 0.01;
     }
 
     public void openRamp() {

@@ -19,6 +19,11 @@ public abstract class TruckWithAngledPlatform extends Vehicle {
         return !platformMod.isElevated();
     }
 
+    @Override
+    protected double getSpeedFactor() {
+        return canDrive() ? getEnginePower() : 0.0;
+    }
+
     public boolean canMovePlatform() {
         return getCurrentSpeed() == 0;
     }

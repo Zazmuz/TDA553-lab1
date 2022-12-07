@@ -7,7 +7,7 @@
     In this case the client is the different implementations of car, mainly Scania and Saab84,
     and the component is Car. The clients expect gas to accelerate the car, and break to deaccelerate it.
 
-    Our design follows LSP (Language Server Protocol) (Liskov Substitution Principle)
+    Our design follows LSP (Liskov Substitution Principle)
     pretty well by the fact that we don't really overwrite and change too much between subclasses, only
     build on what's previously implemented. One example where this is very noticeable is in the car transport and car
     repair shop. As we can see, there are no problems upcasting different cars to vehicle and storing them in a common array.

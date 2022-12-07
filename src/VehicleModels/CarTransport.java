@@ -2,21 +2,18 @@ package src.VehicleModels;
 
 import src.Trucks.TruckWithAngledPlatform;
 import src.Vehicle;
+import src.VehicleMods.Storages.StackVehicleStorage;
 
 import java.awt.*;
-import java.util.Stack;
 
 
 public class CarTransport extends TruckWithAngledPlatform {
 
-    private final Stack<Vehicle> storedVehicles;
-    public final double loadDistance = 5;
-    private final int vehicleCapacity;
+    private final StackVehicleStorage vehicleStorage;
 
     public CarTransport(int capacity) {
         super("CarTransportomatica 2000", Color.BLACK, 2, 1.1, 0.9, 30);
-        vehicleCapacity = capacity;
-        storedVehicles = new Stack<Vehicle>();
+        this.vehicleStorage = new StackVehicleStorage(capacity, 5, this.getPosition());
     }
 
     @Override
@@ -32,44 +29,28 @@ public class CarTransport extends TruckWithAngledPlatform {
         movePlatform(0);
     }
 
-    public int getCarAmount() {
-        return storedVehicles.size();
-    }
-
-    public int getVehicleCapacity() {
-        return vehicleCapacity;
-    }
-
     public void addToStorage(Vehicle vehicle) {
-        if (storedVehicles.size() >= vehicleCapacity)
-            throw new IllegalStateException("Car transport is already full");
         if (getCurrentSpeed() != 0)
-            throw new IllegalStateException("Car transport should be stationary when loading cars");
-        if (vehicle.getPosition().distanceTo(getPosition()) > loadDistance)
-            throw new IllegalStateException("Car is not close enough");
+            throw new IllegalStateException("Car transport should be stationary when loading cars!");
         if (!platformIsRaised())
-            throw new IllegalStateException("Ramp has to be opened before adding vehicles");
-        if (vehicle.getCurrentSpeed() != 0)
-            throw new IllegalStateException("Car should be stationary when getting loaded");
+            throw new IllegalStateException("Ramp has to be opened before adding vehicles!");
 
-        storedVehicles.add(vehicle);
+        vehicleStorage.addVehicle(vehicle);
     }
 
     public Vehicle removeFromStorage() {
-        if (storedVehicles.empty())
-            throw new IllegalStateException("There are no cars to unload");
         if (!platformIsRaised())
             throw new IllegalStateException("Ramp has to be open when removing a car");
         if (getCurrentSpeed() != 0)
             throw new IllegalStateException("Cannot unload a car while driving");
 
-        Vehicle vehicle = storedVehicles.pop();
+        Vehicle vehicle = vehicleStorage.removeVehicle();
         double unloadAngle = getDirection() + Math.PI;
-        double unloadDistance = Math.random() * loadDistance;
-        vehicle.getPosition().x = getPosition().x + Math.cos(unloadAngle) * unloadDistance;
-        vehicle.getPosition().y = getPosition().y + Math.sin(unloadAngle) * unloadDistance;
+        vehicleStorage.unloadVehicleTo(vehicle, unloadAngle);
 
         return vehicle;
     }
+
+    public double getLoadDistance() { return vehicleStorage.loadDistance; }
 
 }

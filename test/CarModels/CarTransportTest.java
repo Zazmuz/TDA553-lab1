@@ -66,6 +66,27 @@ public class CarTransportTest {
             v.startEngine();
             for (int i = 0; i < 1000; i++) v.gas(1);
             for (int i = 0; i < 10000; i++) v.move();
+            for (int i = 0; i < 2000; i++) v.brake(1);
+
+            transport.addToStorage(v);
+
+            fail("Should throw exception - Car is too far away to load");
+        } catch (IllegalStateException expectedException) { }
+    }
+
+    @Test
+    public void test_cartransport_load_close_enough_transport() {
+        try {
+            CarTransport transport = new CarTransport(1);
+            transport.startEngine();
+            for (int i = 0; i < 1000; i++) transport.gas(1);
+            for (int i = 0; i < 10000; i++) transport.move();
+            for (int i = 0; i < 10000; i++) transport.brake(1);
+            transport.openRamp();
+
+            Saab95 v = new Saab95();
+            v.startEngine();
+
 
             transport.addToStorage(v);
 
@@ -113,7 +134,7 @@ public class CarTransportTest {
         Saab95 v = new Saab95();
         transport.addToStorage(v);
 
-        assertTrue(transport.removeFromStorage().getPosition().distanceTo(transport.getPosition()) <= transport.loadDistance);
+        assertTrue(transport.removeFromStorage().getPosition().distanceTo(transport.getPosition()) <= transport.getLoadDistance());
     }
 
     @Test
@@ -139,7 +160,7 @@ public class CarTransportTest {
             transport.addToStorage(car);
 
             fail("Should throw exception - Can't load moving cars!!");
-        } catch (IllegalStateException expectedException){ }
+        } catch (IllegalArgumentException expectedException){ }
     }
 
 }

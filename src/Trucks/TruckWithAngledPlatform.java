@@ -12,36 +12,36 @@ public abstract class TruckWithAngledPlatform extends Vehicle {
 
     public TruckWithAngledPlatform(String modelName, Color color, int nrDoors, double enginePower, double turningRate, double maxAngle) {
         super(modelName, color, nrDoors, enginePower, turningRate);
-        platformMod = new AngledPlatformMod(maxAngle);
+        this.platformMod = new AngledPlatformMod(maxAngle);
     }
 
     protected boolean canDrive() {
-        return !platformMod.isElevated();
+        return !this.platformMod.isElevated();
     }
 
     @Override
     protected double getSpeedFactor() {
-        return canDrive() ? getEnginePower() : 0.0;
+        return canDrive() ? this.getEnginePower() : 0.0;
     }
 
     public boolean canMovePlatform() {
-        return getCurrentSpeed() == 0;
+        return this.getCurrentSpeed() == 0;
     }
 
     public void movePlatform(double angle) {
         if (canMovePlatform()) {
-            platformMod.setAngle(angle);
+            this.platformMod.setAngle(angle);
         }
     }
 
-    public boolean platformIsLowered() { return platformMod.isLowered(); }
+    public boolean platformIsLowered() { return this.platformMod.isLowered(); }
 
-    public boolean platformIsRaised() { return platformMod.isRaised(); }
+    public boolean platformIsRaised() { return this.platformMod.isRaised(); }
 
-    public boolean platformIsElevated() { return platformMod.isElevated(); }
+    public boolean platformIsElevated() { return this.platformMod.isElevated(); }
 
-    public double getMaxAngle() { return platformMod.getMaxAngle(); }
+    public double getMaxAngle() { return this.platformMod.getMaxAngle(); }
 
-    public double getPlatformAngle() { return platformMod.getAngle(); }
+    public double getPlatformAngle() { return this.platformMod.getAngle(); }
 
 }

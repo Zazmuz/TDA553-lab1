@@ -13,6 +13,6 @@ public class Volvo240 extends TrimmedCar {
 
     @Override
     protected double getSpeedFactor() {
-        return getEnginePower() * 0.01 * getTrimMod().getTrimFactor();
+        return this.getEnginePower() * 0.01 * this.getTrimMod().getTrimFactor();
     }
 }

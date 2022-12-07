@@ -12,36 +12,36 @@ public class Vector2D {
     }
 
     public String toString() {
-        return String.format("Vector2D(%s, %s)", x, y);
+        return String.format("Vector2D(%s, %s)", this.x, this.y);
     }
 
     public double magnitude() {
-        return Math.sqrt(x*x + y*y);
+        return Math.sqrt(this.x*this.x + this.y*this.y);
     }
 
     public void add(Vector2D other) {
-        x += other.x;
-        y += other.y;
+        this.x += other.x;
+        this.y += other.y;
     }
 
     public void sub(Vector2D other) {
-        x -= other.x;
-        y -= other.y;
+        this.x -= other.x;
+        this.y -= other.y;
     }
 
     public void mul(int val) {
-        x *= val;
-        y *= val;
+        this.x *= val;
+        this.y *= val;
     }
 
     public void mul(double val) {
-        x *= val;
-        y *= val;
+        this.x *= val;
+        this.y *= val;
     }
 
     public double distanceTo(Vector2D other) {
-        double dx = x - other.x;
-        double dy = y - other.y;
+        double dx = this.x - other.x;
+        double dy = this.y - other.y;
         return Math.sqrt(dx*dx + dy*dy);
     }
 

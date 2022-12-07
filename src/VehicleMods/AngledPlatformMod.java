@@ -10,21 +10,21 @@ public class AngledPlatformMod {
         this.maxAngle = maxAngle;
     }
 
-    public boolean isElevated() { return currentAngle > 0; }
+    public boolean isElevated() { return this.currentAngle > 0; }
 
-    public boolean isRaised() { return currentAngle == maxAngle; }
+    public boolean isRaised() { return this.currentAngle == this.maxAngle; }
 
-    public boolean isLowered() { return currentAngle == 0; }
+    public boolean isLowered() { return this.currentAngle == 0; }
 
-    public double getAngle() { return currentAngle; }
+    public double getAngle() { return this.currentAngle; }
 
     public void setAngle(double angle) {
-        angle = Math.min(angle, maxAngle);
+        angle = Math.min(angle, this.maxAngle);
         angle = Math.max(angle, 0);
-        currentAngle = angle;
+        this.currentAngle = angle;
     }
 
-    public double getMaxAngle() { return maxAngle; }
+    public double getMaxAngle() { return this.maxAngle; }
 
 }
 

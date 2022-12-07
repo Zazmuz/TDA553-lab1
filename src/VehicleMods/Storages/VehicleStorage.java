@@ -16,7 +16,7 @@ public abstract class VehicleStorage {
     public VehicleStorage(int capacity, double loadDistance, Vector2D position) {
         this.position = position;
         this.loadDistance = loadDistance;
-        setMaxCapacity(capacity);
+        this.setMaxCapacity(capacity);
     }
 
     public int getStoredAmount() { return this.storedVehicles.size(); }
@@ -24,9 +24,9 @@ public abstract class VehicleStorage {
     public void addVehicle(Vehicle vehicle) {
         if (vehicle.getCurrentSpeed() != 0)
             throw new IllegalArgumentException("Can't add a moving vehicle to storage!");
-        if (getStoredVehicleCount() >= getMaxCapacity())
+        if (this.getStoredVehicleCount() >= getMaxCapacity())
             throw new IllegalStateException("Vehicle storage is full!");
-        if (position.distanceTo(vehicle.getPosition()) > loadDistance)
+        if (this.position.distanceTo(vehicle.getPosition()) > this.loadDistance)
             throw new IllegalStateException("Car is not close enough!");
 
         addToStorage(vehicle);
@@ -35,7 +35,7 @@ public abstract class VehicleStorage {
     protected abstract void addToStorage(Vehicle vehicle);
 
     public Vehicle removeVehicle(Vehicle vehicle) {
-        if (getStoredVehicleCount() == 0) {
+        if (this.getStoredVehicleCount() == 0) {
             throw new IllegalStateException("Can't remove from empty storage!");
         }
 

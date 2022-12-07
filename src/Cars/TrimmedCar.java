@@ -12,11 +12,11 @@ public abstract class TrimmedCar extends Vehicle {
 
     public TrimmedCar(String modelName, Color color, int nrDoors, double enginePower, double turningRate, double trimFactor) {
         super(modelName, color, nrDoors, enginePower, turningRate);
-        trimMod = new TrimMod(trimFactor);
+        this.trimMod = new TrimMod(trimFactor);
     }
 
     public TrimMod getTrimMod() {
-        return trimMod;
+        return this.trimMod;
     }
 
 }

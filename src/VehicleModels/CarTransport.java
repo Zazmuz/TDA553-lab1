@@ -30,27 +30,27 @@ public class CarTransport extends TruckWithAngledPlatform {
     }
 
     public void addToStorage(Vehicle vehicle) {
-        if (getCurrentSpeed() != 0)
+        if (this.getCurrentSpeed() != 0)
             throw new IllegalStateException("Car transport should be stationary when loading cars!");
         if (!platformIsRaised())
             throw new IllegalStateException("Ramp has to be opened before adding vehicles!");
 
-        vehicleStorage.addVehicle(vehicle);
+        this.vehicleStorage.addVehicle(vehicle);
     }
 
     public Vehicle removeFromStorage() {
         if (!platformIsRaised())
             throw new IllegalStateException("Ramp has to be open when removing a car");
-        if (getCurrentSpeed() != 0)
+        if (this.getCurrentSpeed() != 0)
             throw new IllegalStateException("Cannot unload a car while driving");
 
         Vehicle vehicle = vehicleStorage.removeVehicle();
-        double unloadAngle = getDirection() + Math.PI;
-        vehicleStorage.unloadVehicleTo(vehicle, unloadAngle);
+        double unloadAngle = this.getDirection() + Math.PI;
+        this.vehicleStorage.unloadVehicleTo(vehicle, unloadAngle);
 
         return vehicle;
     }
 
-    public double getLoadDistance() { return vehicleStorage.loadDistance; }
+    public double getLoadDistance() { return this.vehicleStorage.loadDistance; }
 
 }

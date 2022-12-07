@@ -24,12 +24,12 @@ public class CarRepairShop {
         if (vehicle.getCurrentSpeed() != 0)
             throw new IllegalStateException("Car should be stationary when getting loaded!");
 
-        vehicleStorage.addVehicle(vehicle);
+        this.vehicleStorage.addVehicle(vehicle);
     }
 
     public Vehicle removeFromStorage(Vehicle vehicle) {
-        Vehicle storedVehicle = vehicleStorage.removeVehicle(vehicle);
-        vehicleStorage.unloadVehicleTo(storedVehicle, Math.random() * 2 * Math.PI, Math.random() * loadDistance);
+        Vehicle storedVehicle = this.vehicleStorage.removeVehicle(vehicle);
+        this.vehicleStorage.unloadVehicleTo(storedVehicle, Math.random() * 2 * Math.PI, Math.random() * this.loadDistance);
         return storedVehicle;
     }
 

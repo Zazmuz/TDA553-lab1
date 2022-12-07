@@ -20,7 +20,7 @@ public abstract class Vehicle implements Movable {
         this.modelName = modelName;
         this.color = color;
         this.nrDoors = nrDoors;
-        setEnginePower(enginePower);
+        this.setEnginePower(enginePower);
         this.turningRate = turningRate;
         this.position = new Vector2D(0,0);
         stopEngine();
@@ -28,67 +28,67 @@ public abstract class Vehicle implements Movable {
 
     @Override
     public void move() {
-        position.x += Math.cos(direction) * getCurrentSpeed();
-        position.y += Math.sin(direction) * getCurrentSpeed();
+        this.position.x += Math.cos(this.direction) * this.getCurrentSpeed();
+        this.position.y += Math.sin(this.direction) * this.getCurrentSpeed();
     }
 
     @Override
     public void turnLeft() {
-        direction += Math.toRadians(turningRate);
-        direction %= 2 * Math.PI;
+        this.direction += Math.toRadians(this.turningRate);
+        this.direction %= 2 * Math.PI;
     }
 
     @Override
     public void turnRight() {
-        direction -= Math.toRadians(turningRate);
-        direction %= 2 * Math.PI;
+        this.direction -= Math.toRadians(this.turningRate);
+        this.direction %= 2 * Math.PI;
     }
 
-    public double getXCoordinate() { return position.x; }
+    public double getXCoordinate() { return this.position.x; }
 
-    public double getYCoordinate() { return position.y; }
+    public double getYCoordinate() { return this.position.y; }
 
-    public Vector2D getPosition() { return position; }
+    public Vector2D getPosition() { return this.position; }
 
-    public double getDirection() { return direction; }
+    public double getDirection() { return this.direction; }
 
-    public String getModelName() { return modelName; }
+    public String getModelName() { return this.modelName; }
 
-    public Color getColor() { return color; }
+    public Color getColor() { return this.color; }
 
     public void setColor(Color color) { this.color = color; }
 
-    public int getNrDoors() { return nrDoors; }
+    public int getNrDoors() { return this.nrDoors; }
 
-    public double getEnginePower() { return enginePower; }
+    public double getEnginePower() { return this.enginePower; }
 
-    protected void setEnginePower(double value) { enginePower = Math.max(value, 0); }
+    protected void setEnginePower(double value) { this.enginePower = Math.max(value, 0); }
 
-    public double getCurrentSpeed() { return currentSpeed; }
+    public double getCurrentSpeed() { return this.currentSpeed; }
 
     protected void setCurrentSpeed(double speed) {
-        currentSpeed = Math.min(speed, getEnginePower());
-        currentSpeed = Math.max(currentSpeed, 0);
+        this.currentSpeed = Math.min(speed, this.getEnginePower());
+        this.currentSpeed = Math.max(this.currentSpeed, 0);
     }
 
     abstract protected double getSpeedFactor();
 
-    public double getTurningRate() { return turningRate; }
+    public double getTurningRate() { return this.turningRate; }
 
-    public boolean getMotorOn() { return motorOn; }
+    public boolean getMotorOn() { return this.motorOn; }
 
-    public void setMotorOn(boolean state) { motorOn = state; }
+    public void setMotorOn(boolean state) { this.motorOn = state; }
 
-    public void startEngine() { setMotorOn(true); }
+    public void startEngine() { this.setMotorOn(true); }
 
-    public void stopEngine() { setMotorOn(false); }
+    public void stopEngine() { this.setMotorOn(false); }
 
     protected void incrementSpeed(double amount) {
-        if (getMotorOn()) setCurrentSpeed(getCurrentSpeed() + getSpeedFactor() * amount);
+        if (getMotorOn()) setCurrentSpeed(this.getCurrentSpeed() + this.getSpeedFactor() * amount);
     }
 
     protected void decrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() - getSpeedFactor() * amount);
+        setCurrentSpeed(this.getCurrentSpeed() - this.getSpeedFactor() * amount);
     }
 
     public void gas(double amount) {

@@ -7,21 +7,21 @@ public class TurboMod {
     private double turbo;
 
     public TurboMod(double turbo) {
-        setTurbo(turbo);
+        this.setTurbo(turbo);
     }
 
-    public boolean getTurboOn() { return turboOn; }
+    public boolean getTurboOn() { return this.turboOn; }
 
     public void setTurboOn(){
-        turboOn = true;
+        this.turboOn = true;
     }
 
     public void setTurboOff(){
-        turboOn = false;
+        this.turboOn = false;
     }
 
     public double getTurbo() {
-        return getTurboOn() ? turbo : 1;
+        return this.getTurboOn() ? this.turbo : 1;
     }
 
     private void setTurbo(double value) {

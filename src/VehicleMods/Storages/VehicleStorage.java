@@ -13,10 +13,11 @@ public abstract class VehicleStorage {
     public final double loadDistance;
     Vector2D position;
 
-    public VehicleStorage(int capacity, double loadDistance, Vector2D position) {
+    public VehicleStorage(Collection<Vehicle> storage, int capacity, double loadDistance, Vector2D position) {
         this.position = position;
         this.loadDistance = loadDistance;
         this.setMaxCapacity(capacity);
+        this.storedVehicles = storage;
     }
 
     public int getStoredAmount() { return this.storedVehicles.size(); }

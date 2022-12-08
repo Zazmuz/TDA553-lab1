@@ -7,10 +7,9 @@ import java.util.HashSet;
 
 
 public class HeapVehicleStorage extends VehicleStorage {
-
+    
     public HeapVehicleStorage(int capacity, double loadDistance, Vector2D position) {
-        super(capacity, loadDistance, position);
-        this.storedVehicles = new HashSet<Vehicle>();
+        super(new HashSet<Vehicle>(), capacity, loadDistance, position);
     }
 
     @Override
@@ -18,10 +17,12 @@ public class HeapVehicleStorage extends VehicleStorage {
         this.storedVehicles.add(vehicle);
     }
 
+    @Override
     protected Vehicle removeFromStorage() {
         throw new IllegalArgumentException("Not implemented");
     }
 
+    @Override
     protected Vehicle removeFromStorage(Vehicle vehicle) {
         HashSet<Vehicle> storedVehicles = (HashSet<Vehicle>) this.storedVehicles;
 

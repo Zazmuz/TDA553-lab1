@@ -9,8 +9,7 @@ import java.util.Stack;
 public class StackVehicleStorage extends VehicleStorage {
 
     public StackVehicleStorage(int capacity, int loadDistance, Vector2D position) {
-        super(capacity, loadDistance, position);
-        this.storedVehicles = new Stack<Vehicle>();
+        super(new Stack<Vehicle>(), capacity, loadDistance, position);
     }
 
     @Override
@@ -18,10 +17,12 @@ public class StackVehicleStorage extends VehicleStorage {
         this.storedVehicles.add(vehicle);
     }
 
+    @Override
     protected Vehicle removeFromStorage() {
         return ((Stack<Vehicle>)this.storedVehicles).pop();
     }
 
+    @Override
     protected Vehicle removeFromStorage(Vehicle v) {
         throw new IllegalArgumentException("Not implemented");
     }

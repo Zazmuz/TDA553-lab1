@@ -4,7 +4,9 @@ import main.vehicle_models.CarTransport;
 import main.vehicle_models.Saab95;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 
 public class CarTransportTest {

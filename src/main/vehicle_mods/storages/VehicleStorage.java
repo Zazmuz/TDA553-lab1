@@ -6,7 +6,7 @@ import main.math.Vector2D;
 import java.util.Collection;
 
 
-public abstract class VehicleStorage {
+public abstract class   VehicleStorage {
 
     Collection<Vehicle> storedVehicles;
     private int maxCapacity;

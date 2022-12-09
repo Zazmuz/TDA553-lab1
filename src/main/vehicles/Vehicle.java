@@ -5,7 +5,6 @@ import main.events.Event;
 import main.math.Vector2D;
 
 import java.awt.*;
-import java.nio.file.attribute.PosixFileAttributes;
 
 
 public abstract class Vehicle implements Movable, EventListener {

@@ -15,7 +15,7 @@ public class CarRepairShop {
     public CarRepairShop(String name, Vector2D position, int capacity) {
         this.shopName = name;
         this.position = position;
-        this.vehicleStorage = new HeapVehicleStorage(capacity, loadDistance, this.position);
+        this.vehicleStorage = new HeapVehicleStorage(capacity, loadDistance, this.getPosition());
     }
 
     public Vector2D getPosition() {

@@ -15,8 +15,9 @@ public abstract class TruckWithAngledPlatform extends Vehicle {
         this.platformMod = new AngledPlatformMod(maxAngle);
     }
 
-    protected boolean canDrive() {
-        return !this.platformMod.isElevated();
+    @Override
+    public boolean canDrive() {
+        return super.canDrive() && !this.platformMod.isElevated();
     }
 
     @Override

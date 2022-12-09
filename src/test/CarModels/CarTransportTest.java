@@ -5,8 +5,7 @@ import main.vehicle_models.Saab95;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 
 public class CarTransportTest {
@@ -55,6 +54,39 @@ public class CarTransportTest {
 
             fail("Should throw exception - Car transport should be stationary when loading cars!");
         } catch (IllegalStateException expectedException) { }
+    }
+
+    @Test
+    public void test_cartransport_car_follows() {
+        CarTransport transport = new CarTransport(1);
+        transport.startEngine();
+
+        Saab95 v = new Saab95();
+        v.startEngine();
+        transport.openRamp();
+        transport.addToStorage(v);
+
+        transport.closeRamp();
+
+        for (int i = 0; i < 1000; i++) transport.gas(1);
+        for (int i = 0; i < 10000; i++) transport.move();
+        for (int i = 0; i < 10; i++) v.turnLeft();
+        v.gas(1);
+        for (int i = 0; i < 10; i++) v.move();
+
+        assertEquals(transport.getPosition().x, v.getPosition().x, 0.000001);
+        assertEquals(transport.getPosition().y, v.getPosition().y, 0.000001);
+    }
+
+    @Test
+    public void test_cartransport_storage_moves() {
+        CarTransport transport = new CarTransport(1);
+        transport.startEngine();
+        for (int i = 0; i < 100; i++) transport.gas(1);
+        for (int i = 0; i < 100; i++) transport.move();
+        assertEquals(transport.getPosition().x, transport.getStoragePosition().x, 0.000001);
+        assertEquals(transport.getPosition().y, transport.getStoragePosition().y, 0.000001);
+
     }
 
     @Test

@@ -1,26 +1,35 @@
 package main.vehicle_mods.storages;
 
+import main.events.Event;
+import main.events.EventListener;
+import main.events.EventType;
+import main.events.MovedEvent;
 import main.vehicles.Vehicle;
 import main.math.Vector2D;
 
 import java.util.Collection;
 
 
-public abstract class   VehicleStorage {
+public abstract class VehicleStorage implements EventListener {
 
-    Collection<Vehicle> storedVehicles;
+    protected Collection<Vehicle> storedVehicles;
     private int maxCapacity;
     public final double loadDistance;
-    Vector2D position;
+    private final Vector2D position;
 
     public VehicleStorage(Collection<Vehicle> storage, int capacity, double loadDistance, Vector2D position) {
-        this.position = position;
         this.loadDistance = loadDistance;
         this.setMaxCapacity(capacity);
         this.storedVehicles = storage;
+        this.position = new Vector2D(0,0);
+        this.position.set(position);
     }
 
-    public int getStoredAmount() { return this.storedVehicles.size(); }
+    public void onEvent(Event e) {
+        if (e.type == EventType.onMove) {
+            this.position.set(((MovedEvent)e).position);
+        }
+    }
 
     public void addVehicle(Vehicle vehicle) {
         if (vehicle.getCurrentSpeed() != 0)
@@ -31,6 +40,7 @@ public abstract class   VehicleStorage {
             throw new IllegalStateException("Car is not close enough!");
 
         addToStorage(vehicle);
+        vehicle.setIsParked(true);
     }
 
     protected abstract void addToStorage(Vehicle vehicle);
@@ -50,6 +60,8 @@ public abstract class   VehicleStorage {
     public int getMaxCapacity() { return this.maxCapacity; }
 
     public void setMaxCapacity(int capacity) { this.maxCapacity = capacity; }
+
+    public Vector2D getPosition() { return position; }
 
     public int getStoredVehicleCount() { return this.storedVehicles.size(); }
 

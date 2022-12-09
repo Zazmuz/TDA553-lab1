@@ -17,14 +17,10 @@ public class StackVehicleStorage extends VehicleStorage {
         this.storedVehicles.add(vehicle);
     }
 
-    @Override
-    protected Vehicle removeFromStorage() {
-        return ((Stack<Vehicle>)this.storedVehicles).pop();
-    }
+    public Vehicle removeVehicle() {
+        removeFromStorageCheck();
 
-    @Override
-    protected Vehicle removeFromStorage(Vehicle v) {
-        throw new IllegalArgumentException("Not implemented");
+        return ((Stack<Vehicle>)this.storedVehicles).pop();
     }
 
 }

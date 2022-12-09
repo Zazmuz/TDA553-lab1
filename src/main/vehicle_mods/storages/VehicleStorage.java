@@ -35,23 +35,17 @@ public abstract class   VehicleStorage {
 
     protected abstract void addToStorage(Vehicle vehicle);
 
-    public Vehicle removeVehicle(Vehicle vehicle) {
-        if (this.getStoredVehicleCount() == 0) {
+    public boolean canRemoveFromStorage() {
+        return this.getStoredVehicleCount() != 0;
+    }
+
+    protected void removeFromStorageCheck() {
+        if (!this.canRemoveFromStorage()) {
             throw new IllegalStateException("Can't remove from empty storage!");
         }
-
-        return vehicle == null ? removeFromStorage() : removeFromStorage(vehicle);
     }
-
-    public Vehicle removeVehicle() {
-        return removeVehicle(null);
-    }
-
+    
     public boolean isInStorage(Vehicle vehicle) { return this.storedVehicles.contains(vehicle); }
-
-    protected abstract Vehicle removeFromStorage();
-
-    protected abstract Vehicle removeFromStorage(Vehicle vehicle);
 
     public int getMaxCapacity() { return this.maxCapacity; }
 

@@ -17,13 +17,9 @@ public class HeapVehicleStorage extends VehicleStorage {
         this.storedVehicles.add(vehicle);
     }
 
-    @Override
-    protected Vehicle removeFromStorage() {
-        throw new IllegalArgumentException("Not implemented");
-    }
+    public Vehicle removeVehicle(Vehicle vehicle) {
+        removeFromStorageCheck();
 
-    @Override
-    protected Vehicle removeFromStorage(Vehicle vehicle) {
         HashSet<Vehicle> storedVehicles = (HashSet<Vehicle>) this.storedVehicles;
 
         if (!this.storedVehicles.contains(vehicle))

@@ -10,6 +10,11 @@ public class Vector2D {
         this.y = y;
     }
 
+    public void set(Vector2D v) {
+        this.x = v.x;
+        this.y = v.y;
+    }
+
     public String toString() {
         return String.format("math.Vector2D(%s, %s)", this.x, this.y);
     }

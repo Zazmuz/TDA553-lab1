@@ -86,7 +86,6 @@ public class CarTransportTest {
         for (int i = 0; i < 100; i++) transport.move();
         assertEquals(transport.getPosition().x, transport.getStoragePosition().x, 0.000001);
         assertEquals(transport.getPosition().y, transport.getStoragePosition().y, 0.000001);
-
     }
 
     @Test

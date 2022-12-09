@@ -1,5 +1,6 @@
 package main.vehicles;
 
+
 public interface Movable {
 
     void move();

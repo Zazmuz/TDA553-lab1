@@ -1,0 +1,23 @@
+MVC critique:
+
+One large flaw is in the view section, where there is a function moveit. There should be no logic
+in view, and instead it should observe the model.
+
+The controller should not issue draw calls.
+Use event handler so that the controller does not need to know about the view/model.
+
+CarView should not be named GUIView or something like that
+
+Carcontroller: Arraylist<Vehicle> cars should probably be part of model, not controller
+
+
+General code:
+Use lists for all the goddamn buttons
+Events!!!
+Carview is more like the controller, with all its buttons
+Should draw be more as a service: draw(type: string, pos: Vector2D)
+
+
+
+Using events: principle of least knowledge
+Drawpanel observing: MVC. decouple

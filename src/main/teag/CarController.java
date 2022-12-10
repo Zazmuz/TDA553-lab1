@@ -82,48 +82,26 @@ public class CarController {
         }
     }
 
-    void startAllEnginges() {
+    void setAllEngines(boolean on) {
         for (Vehicle car : cars) {
-            car.startEngine();
+            car.setMotorOn(on);
         }
     }
 
-    void stopAllEnginges() {
-        for (Vehicle car : cars) {
-            car.stopEngine();
-        }
-    }
-
-    void setTurboOn() {
+    void setTurbo(boolean on) {
         for (Vehicle car : cars) {
             if (car instanceof Saab95) {
-                ((Saab95)car).getTurboMod().setTurboOn();
+                if (on) ((Saab95)car).getTurboMod().setTurboOn();
+                else ((Saab95)car).getTurboMod().setTurboOff();
             }
         }
     }
 
-    void setTurboOff() {
-        for (Vehicle car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95)car).getTurboMod().setTurboOff();
-            }
-        }
-    }
-
-    void liftBed() {
+    void moveBed(boolean up) {
         for (Vehicle car : cars) {
             if (car instanceof TruckWithAngledPlatform) {
                 Scania scania = (Scania)car;
-                scania.movePlatform(scania.getPlatformAngle() + 1);
-            }
-        }
-    }
-
-    void lowerBed() {
-        for (Vehicle car : cars) {
-            if (car instanceof TruckWithAngledPlatform) {
-                Scania scania = (Scania)car;
-                scania.movePlatform(scania.getPlatformAngle() - 1);
+                scania.movePlatform(scania.getPlatformAngle() + (up ? 1 : -1));
             }
         }
     }

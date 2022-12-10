@@ -114,14 +114,14 @@ public class CarView extends JFrame {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.startAllEnginges();
+                carC.setAllEngines(true);
             }
         });
 
         stopButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.stopAllEnginges();
+                carC.setAllEngines(false);
             }
         });
 
@@ -135,28 +135,28 @@ public class CarView extends JFrame {
         turboOnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.setTurboOn();
+                carC.setTurbo(true);
             }
         });
 
         turboOffButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.setTurboOff();
+                carC.setTurbo(false);
             }
         });
 
         liftBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                carC.liftBed();
+                carC.moveBed(true);
             }
         });
 
         lowerBedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                carC.lowerBed();
+                carC.moveBed(false);
             }
         });
 

@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class CarTransport extends TruckWithAngledPlatform {
 
-    private final StackVehicleStorage vehicleStorage;
+    private StackVehicleStorage vehicleStorage;
 
 
     public CarTransport(int capacity) {

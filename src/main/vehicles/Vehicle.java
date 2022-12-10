@@ -113,11 +113,11 @@ public abstract class Vehicle implements Movable, EventListener {
 
     public void stopEngine() { this.setMotorOn(false); }
 
-    protected void incrementSpeed(double amount) {
+    private void incrementSpeed(double amount) {
         if (getMotorOn()) setCurrentSpeed(this.getCurrentSpeed() + this.getSpeedFactor() * amount);
     }
 
-    protected void decrementSpeed(double amount) {
+    private void decrementSpeed(double amount) {
         setCurrentSpeed(this.getCurrentSpeed() - this.getSpeedFactor() * amount);
     }
 

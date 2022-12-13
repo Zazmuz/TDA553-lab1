@@ -23,7 +23,7 @@ public class HeapVehicleStorage extends VehicleStorage {
         HashSet<Vehicle> storedVehicles = (HashSet<Vehicle>) this.storedVehicles;
 
         if (!this.storedVehicles.contains(vehicle))
-            throw new IllegalStateException("vehicles.Vehicle doesn't exist in storage!");
+            throw new IllegalStateException("Vehicle doesn't exist in storage!");
 
         storedVehicles.remove(vehicle);
 

@@ -1,4 +1,4 @@
-package main.teag;
+package main.views;
 
 import main.assets.AssetManager;
 import main.assets.themes.VehicleTheme01;

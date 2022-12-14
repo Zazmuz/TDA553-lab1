@@ -2,5 +2,14 @@ package main.events;
 
 public enum EventType {
     onMove,
-    worldUpdate
+    worldUpdate,
+    gasButton,
+    brakeButton,
+    turboOnButton,
+    turboOffButton,
+    raiseLiftBedButton,
+    lowerLiftBedButton,
+    startCarsButton,
+    stopCarsButton,
+
 }

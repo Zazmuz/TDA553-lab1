@@ -65,8 +65,8 @@ public class WorldView extends JFrame implements EventListener {
 
         this.add(drawPanel);
 
-        AddButtonStyles();
-        AddButtonLogic();
+        addButtonStyles();
+        addButtonLogic();
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
@@ -83,7 +83,7 @@ public class WorldView extends JFrame implements EventListener {
 
 
 
-    public void AddButtonStyles()
+    public void addButtonStyles()
     {
         // Gas spinner
         SpinnerModel spinnerModel =
@@ -125,7 +125,7 @@ public class WorldView extends JFrame implements EventListener {
 
     }
 
-    public void AddButtonLogic() {
+    public void addButtonLogic() {
 
         // Gas spinner
         gasSpinner.addChangeListener(new ChangeListener() {

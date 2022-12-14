@@ -11,5 +11,6 @@ public enum EventType {
     lowerLiftBedButton,
     startCarsButton,
     stopCarsButton,
+    gasSpinnerChanged,
 
 }

@@ -1,5 +1,7 @@
 package main.views;
 
+import main.Controller.EventButton;
+import main.Controller.EventSpinner;
 import main.events.*;
 import main.events.Event;
 import main.world.World;
@@ -35,18 +37,18 @@ public class WorldView extends JFrame implements EventListener {
     JPanel controlPanel;
 
     JPanel gasPanel = new JPanel();
-    JSpinner gasSpinner = new JSpinner();
+    EventSpinner gasSpinner;
     int gasAmount = 0;
     JLabel gasLabel = new JLabel("Amount of gas");
 
-    JButton gasButton = new JButton("Gas");
-    JButton brakeButton = new JButton("Brake");
-    JButton turboOnButton = new JButton("Saab Turbo on");
-    JButton turboOffButton = new JButton("Saab Turbo off");
-    JButton liftBedButton = new JButton("Scania Lift Bed");
-    JButton lowerBedButton = new JButton("Lower Lift Bed");
-    JButton startButton = new JButton("Start all cars");
-    JButton stopButton = new JButton("Stop all cars");
+    EventButton gasButton = new EventButton("Gas", EventType.gasButton);
+    EventButton brakeButton = new EventButton("Brake", EventType.brakeButton);
+    EventButton turboOnButton = new EventButton("Saab Turbo on", EventType.turboOnButton);
+    EventButton turboOffButton = new EventButton("Saab Turbo off", EventType.turboOffButton);
+    EventButton liftBedButton = new EventButton("Scania Lift Bed", EventType.raiseLiftBedButton);
+    EventButton lowerBedButton = new EventButton("Lower Lift Bed", EventType.lowerLiftBedButton);
+    EventButton startButton = new EventButton("Start all cars", EventType.startCarsButton);
+    EventButton stopButton = new EventButton("Stop all cars", EventType.stopCarsButton);
 
     public WorldView(String frameName, World world) {
         world.eventManager.register(this);
@@ -66,7 +68,6 @@ public class WorldView extends JFrame implements EventListener {
         this.add(drawPanel);
 
         addButtonStyles();
-        addButtonLogic();
 
         // Make the frame pack all it's components by respecting the sizes if possible.
         this.pack();
@@ -91,7 +92,7 @@ public class WorldView extends JFrame implements EventListener {
                         0, //min
                         100, //max
                         1);//step
-        gasSpinner = new JSpinner(spinnerModel);
+        gasSpinner = new EventSpinner(spinnerModel, EventType.gasSpinnerChanged);
 
         gasPanel.setLayout(new BorderLayout());
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
@@ -123,53 +124,6 @@ public class WorldView extends JFrame implements EventListener {
         stopButton.setPreferredSize(new Dimension(windowWidth/5-15,200));
         this.add(stopButton);
 
-    }
-
-    public void addButtonLogic() {
-
-        // Gas spinner
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
-
-        // Most buttons
-        Map<JButton, EventType> buttons = Map.of(turboOnButton, EventType.turboOnButton,
-                turboOffButton, EventType.turboOffButton,
-                liftBedButton, EventType.raiseLiftBedButton,
-                lowerBedButton, EventType.lowerLiftBedButton,
-                startButton, EventType.startCarsButton,
-                stopButton, EventType.stopCarsButton);
-
-        int i = 0;
-        for (var item : buttons.entrySet()) {
-            item.getKey().addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    // If the button is brake or gas, pass along the gas amount
-                    int value = (item.getValue()==EventType.gasButton || item.getValue()==EventType.brakeButton) ?
-                            gasAmount : 0;
-                    WorldView.this.eventManager.publish(new ButtonPressEvent(item.getValue(), value));
-                }
-            });
-            i++;
-        }
-
-        // Gas and brake
-        gasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                WorldView.this.eventManager.publish(new ButtonPressEvent(EventType.gasButton, WorldView.this.gasAmount));
-            }
-        });
-
-        brakeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                WorldView.this.eventManager.publish(new ButtonPressEvent(EventType.brakeButton, WorldView.this.gasAmount));
-            }
-        });
     }
 
     public void draw(World world) {

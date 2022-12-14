@@ -7,7 +7,7 @@ public class EventManager {
 
     private final ArrayList<EventListener> handlers = new ArrayList<>();
 
-
+    
     public void register(EventListener eventListener) {
         this.handlers.add(eventListener);
     }

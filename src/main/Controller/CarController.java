@@ -30,6 +30,8 @@ public class CarController implements EventListener {
     public World world;
 
     public CarController() {
+        GuiEventManager.getInstance().register(this);
+
         this.timer = new Timer(delay, new TimerListener());
         this.world = new World();
         this.world.spawnVehicle(new Saab95());
@@ -47,8 +49,8 @@ public class CarController implements EventListener {
     // Handle user input
     public void onEvent(Event e)
     {
-        if (e.type == EventType.gasButton)          world.gas(((ButtonPressEvent)e).value);
-        if (e.type == EventType.brakeButton)        world.brake(((ButtonPressEvent)e).value);
+        if (e.type == EventType.gasButton)          world.gas(1);
+        if (e.type == EventType.brakeButton)        world.brake(1);
         if (e.type == EventType.startCarsButton)    world.setAllEngines(true);
         if (e.type == EventType.stopCarsButton)     world.setAllEngines(false);
         if (e.type == EventType.turboOnButton)      world.setTurbo(true);

@@ -1,5 +1,7 @@
 package main.world;
 
+import main.events.EventManager;
+import main.events.WorldUpdateEvent;
 import main.vehicle_mods.TurboMod;
 import main.vehicles.Vehicle;
 import main.vehicles.cars.TurboCar;
@@ -10,17 +12,19 @@ import java.util.ArrayList;
 
 public class World {
 
-    public ArrayList<Vehicle> vehicles = new ArrayList<>();
+    public EventManager eventManager;
+    public ArrayList<Vehicle> vehicles;
 
     public World() {
-
+        this.eventManager = new EventManager();
+        this.vehicles = new ArrayList<>();
     }
 
     public ArrayList<Vehicle> getVehicles() { return vehicles; }
 
     private void setVehicles(ArrayList<Vehicle> vehicles) { this.vehicles = vehicles; }
 
-    void spawnVehicle(Vehicle vehicle) {
+    public void spawnVehicle(Vehicle vehicle) {
         this.vehicles.add(vehicle);
     }
 
@@ -28,6 +32,8 @@ public class World {
         for (Vehicle vehicle : this.vehicles) {
             vehicle.move();
         }
+
+        eventManager.publish(new WorldUpdateEvent(this));
     }
 
     // Calls the gas method for each car once

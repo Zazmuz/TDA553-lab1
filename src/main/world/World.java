@@ -8,19 +8,20 @@ import main.vehicles.cars.TurboCar;
 import main.vehicles.trucks.TruckWithAngledPlatform;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class World {
 
     public EventManager eventManager;
-    public ArrayList<Vehicle> vehicles;
+    public List<Vehicle> vehicles;
 
     public World() {
         this.eventManager = new EventManager();
         this.vehicles = new ArrayList<>();
     }
 
-    public ArrayList<Vehicle> getVehicles() { return vehicles; }
+    public List<Vehicle> getVehicles() { return vehicles; }
 
     private void setVehicles(ArrayList<Vehicle> vehicles) { this.vehicles = vehicles; }
 

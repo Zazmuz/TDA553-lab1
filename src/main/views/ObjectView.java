@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.util.List;
 
 
 // This panel represent the animated part of the view with the car images.
@@ -21,7 +22,7 @@ public class ObjectView extends JPanel {
         this.setBackground(Color.green);
     }
 
-    private ArrayList<Vehicle> toDraw = new ArrayList<Vehicle>();
+    private List<Vehicle> toDraw = new ArrayList<Vehicle>();
 
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override
@@ -39,7 +40,7 @@ public class ObjectView extends JPanel {
 
     }
 
-    void drawVehicles(ArrayList<Vehicle> vehicles) {
+    void drawVehicles(List<Vehicle> vehicles) {
         toDraw = vehicles;
         this.repaint();
     }

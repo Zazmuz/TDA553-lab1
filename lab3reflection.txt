@@ -8,13 +8,13 @@ Use event handler so that the controller does not need to know about the view/mo
 
 CarView should not be named GUIView or something like that
 
-Carcontroller: Arraylist<Vehicle> cars should probably be part of model, not controller
+CarController: Arraylist<Vehicle> cars should probably be part of model, not controller
 
 
 General code:
 Use lists for all the goddamn buttons
 Events!!!
-Carview is more like the controller, with all its buttons
+CarView is more like the controller, with all its buttons
 Should draw be more as a service: draw(type: string, pos: Vector2D)
 
 

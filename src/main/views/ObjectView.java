@@ -21,17 +21,14 @@ public class ObjectView extends JPanel {
         this.setBackground(Color.green);
     }
 
-    private ArrayList<Vehicle> todraw;
+    private ArrayList<Vehicle> toDraw = new ArrayList<Vehicle>();
 
     // This method is called each time the panel updates/refreshes/repaints itself
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        if (todraw == null)
-            return;
-
-        for (Vehicle vehicle : todraw) {
+        for (Vehicle vehicle : toDraw) {
             int vehicleX = (int) Math.round(vehicle.getPosition().x);
             int vehicleY = (int) Math.round(vehicle.getPosition().y);
             String spritePath = VehicleTheme01.getImagePath(vehicle);
@@ -43,7 +40,7 @@ public class ObjectView extends JPanel {
     }
 
     void drawVehicles(ArrayList<Vehicle> vehicles) {
-        todraw = vehicles;
+        toDraw = vehicles;
         this.repaint();
     }
 

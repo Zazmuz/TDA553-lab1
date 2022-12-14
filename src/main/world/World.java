@@ -79,7 +79,7 @@ public class World {
         }
     }
 
-    // Moves the platform on all vehicles that have an angled platform one degree
+    // Moves the platform on all vehicles with angled platform, one degree
     public  void moveBed(boolean up) {
         for (Vehicle vehicle : vehicles) {
             if (vehicle instanceof TruckWithAngledPlatform) {

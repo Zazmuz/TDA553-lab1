@@ -13,13 +13,15 @@ import java.util.List;
 
 public class World {
 
-    public EventManager eventManager;
+    private EventManager eventManager;
     public List<Vehicle> vehicles;
 
     public World() {
         this.eventManager = new EventManager();
         this.vehicles = new ArrayList<>();
     }
+
+    public EventManager getEventManager() { return this.eventManager; }
 
     public List<Vehicle> getVehicles() { return vehicles; }
 

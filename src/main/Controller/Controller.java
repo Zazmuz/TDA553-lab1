@@ -40,7 +40,6 @@ public abstract class Controller implements EventListener {
         // Start a new view and send a reference of the model
         this.frame = new WorldView("CarSim 1.0", world);
         // Register to receive UI events
-        this.frame.eventManager.register(this);
 
         // Start the timer
         this.timer.start();

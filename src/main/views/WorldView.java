@@ -28,33 +28,30 @@ import java.util.Map;
 
 public class WorldView extends JFrame implements EventListener {
 
-    public final EventManager eventManager;
     private static final int windowWidth = 800;
     private static final int windowHeight = 800;
     private static final int guiHeight = 240;
 
-    ObjectView drawPanel;
-    JPanel controlPanel;
+    private final ObjectView drawPanel;
+    private final JPanel controlPanel;
 
-    JPanel gasPanel = new JPanel();
-    EventSpinner gasSpinner;
-    int gasAmount = 0;
-    JLabel gasLabel = new JLabel("Amount of gas");
+    private final JPanel gasPanel = new JPanel();
+    private EventSpinner gasSpinner;
+    private final JLabel gasLabel = new JLabel("Amount of gas");
 
-    EventButton gasButton = new EventButton("Gas", EventType.gasButton);
-    EventButton brakeButton = new EventButton("Brake", EventType.brakeButton);
-    EventButton turboOnButton = new EventButton("Saab Turbo on", EventType.turboOnButton);
-    EventButton turboOffButton = new EventButton("Saab Turbo off", EventType.turboOffButton);
-    EventButton liftBedButton = new EventButton("Scania Lift Bed", EventType.raiseLiftBedButton);
-    EventButton lowerBedButton = new EventButton("Lower Lift Bed", EventType.lowerLiftBedButton);
-    EventButton startButton = new EventButton("Start all cars", EventType.startCarsButton);
-    EventButton stopButton = new EventButton("Stop all cars", EventType.stopCarsButton);
+    private final EventButton gasButton = new EventButton("Gas", EventType.gasButton);
+    private final EventButton brakeButton = new EventButton("Brake", EventType.brakeButton);
+    private final EventButton turboOnButton = new EventButton("Saab Turbo on", EventType.turboOnButton);
+    private final EventButton turboOffButton = new EventButton("Saab Turbo off", EventType.turboOffButton);
+    private final EventButton liftBedButton = new EventButton("Scania Lift Bed", EventType.raiseLiftBedButton);
+    private final EventButton lowerBedButton = new EventButton("Lower Lift Bed", EventType.lowerLiftBedButton);
+    private final EventButton startButton = new EventButton("Start all cars", EventType.startCarsButton);
+    private final EventButton stopButton = new EventButton("Stop all cars", EventType.stopCarsButton);
 
     public WorldView(String frameName, World world) {
-        world.eventManager.register(this);
+        world.getEventManager().register(this);
         this.drawPanel = new ObjectView(windowWidth, windowHeight - guiHeight);
         this.controlPanel = new JPanel();
-        this.eventManager = new EventManager();
 
         initComponents(frameName);
     }

@@ -17,26 +17,26 @@ public class CarController extends Controller {
     protected void onGasPress(Event e) { this.world.gas(gasSpinnerValue); }
 
     @Override
-    protected void onBrakePress(Event e) {this.world.brake(gasSpinnerValue);}
+    protected void onBrakePress(Event e) { this.world.brake(gasSpinnerValue); }
 
     @Override
-    protected void onStartCarsPress(Event e) {this.world.setAllEngines(true);}
+    protected void onStartCarsPress(Event e) { this.world.setAllEngines(true); }
 
     @Override
-    protected void onStopCarsPress(Event e) {this.world.setAllEngines(false);}
+    protected void onStopCarsPress(Event e) { this.world.setAllEngines(false); }
 
     @Override
-    protected void onTurboOnCarsPress(Event e) {this.world.setTurbo(true);}
+    protected void onTurboOnCarsPress(Event e) { this.world.setTurbo(true); }
 
     @Override
-    protected void onTurboOffPress(Event e) {this.world.setTurbo(false);}
+    protected void onTurboOffPress(Event e) { this.world.setTurbo(false); }
 
     @Override
-    protected void onRaiseLiftBedPress(Event e) {this.world.moveBed(true);}
+    protected void onRaiseLiftBedPress(Event e) { this.world.moveBed(true); }
 
     @Override
-    protected void onLowerLiftBedPress(Event e) {this.world.moveBed(false);}
+    protected void onLowerLiftBedPress(Event e) { this.world.moveBed(false); }
 
     @Override
-    protected void onGasSpinnerChanged(Event e) {setGasSpinnerValue(((SpinnerChangedEvent)e).getValue());}
+    protected void onGasSpinnerChanged(Event e) { setGasSpinnerValue(((SpinnerChangedEvent)e).getValue()); }
 }

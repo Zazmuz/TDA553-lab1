@@ -141,7 +141,7 @@ public class WorldView extends JFrame implements EventListener {
                 lowerBedButton, EventType.lowerLiftBedButton,
                 startButton, EventType.startCarsButton,
                 stopButton, EventType.stopCarsButton);
-
+        
         int i = 0;
         for (var item : buttons.entrySet()) {
             item.getKey().addActionListener(new ActionListener() {

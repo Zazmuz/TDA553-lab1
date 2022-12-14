@@ -44,11 +44,6 @@ public class CarController implements EventListener {
         this.timer.start();
     }
 
-    public static void main(String[] args) {
-        // Instance of this class
-        CarController cc = new CarController();
-    }
-
     // Handle user input
     public void onEvent(Event e)
     {

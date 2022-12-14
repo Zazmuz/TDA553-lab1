@@ -1,7 +1,7 @@
 package main.teag;
 
 import main.vehicle_models.Saab95;
-import main.vehicles.Vehicle;
+import main.vehicle_models.Volvo240;
 import main.world.World;
 
 import javax.swing.*;
@@ -31,6 +31,11 @@ public class CarController {
     public CarController() {
         this.timer = new Timer(delay, new TimerListener());
         this.world = new World();
+        this.world.spawnVehicle(new Saab95());
+        this.world.spawnVehicle(new Volvo240(2));
+
+        this.world.setAllEngines(true);
+
         // Start a new view and send a reference of self
         this.frame = new WorldView("CarSim 1.0", world);
 
@@ -41,9 +46,6 @@ public class CarController {
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
-
-        //cc.cars.add(new Saab95());
-
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -51,6 +53,7 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+            world.gas(1);
             world.update();
         }
     }

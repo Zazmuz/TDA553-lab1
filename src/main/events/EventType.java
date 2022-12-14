@@ -1,5 +1,6 @@
 package main.events;
 
 public enum EventType {
-    onMove
+    onMove,
+    worldUpdate
 }

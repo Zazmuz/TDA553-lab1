@@ -1,16 +1,11 @@
 package main.teag;
 
-import main.vehicles.Vehicle;
+import main.events.*;
+import main.events.Event;
 import main.world.World;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Vector;
-
 
 /**
  * This class represents the full view of the MVC pattern of your car simulator.
@@ -20,24 +15,26 @@ import java.util.Vector;
  * TODO: Write more actionListeners and wire the rest of the buttons
  **/
 
-public class WorldView extends JFrame {
+public class WorldView extends JFrame implements EventListener {
 
     private static final int windowWidth = 800;
     private static final int windowHeight = 800;
+    private static final int guiHeight = 240;
 
-    DrawPanel drawPanel = new DrawPanel(windowWidth, windowHeight - 240);
-    JPanel controlPanel = new JPanel();
-    World world;
+    ObjectView drawPanel;
+    //JPanel controlPanel;
 
-    // Constructor
-    public WorldView(String frameName, World world){
-        this.world = world;
+
+    public WorldView(String frameName, World world) {
+        world.eventManager.register(this);
+        this.drawPanel = new ObjectView(windowWidth, windowHeight - guiHeight);
+        //this.controlPanel = new JPanel();
+
         initComponents(frameName);
     }
 
     // Sets everything in place and fits everything
     private void initComponents(String title) {
-
         this.setTitle(title);
         this.setPreferredSize(new Dimension(windowWidth, windowHeight));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
@@ -57,12 +54,14 @@ public class WorldView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void draw() {
-        for (Vehicle vehicle : world.vehicles) {
-            int vehicleX = (int) Math.round(vehicle.getPosition().x);
-            int vehicleY = (int) Math.round(vehicle.getPosition().y);
-            drawPanel.moveit(vehicleX, vehicleY);
-            drawPanel.repaint();
+    public void draw(World world) {
+        drawPanel.drawVehicles(world.vehicles);
+    }
+
+    public void onEvent(Event e) {
+        if (e.type == EventType.worldUpdate) {
+            World world = ((WorldUpdateEvent)e).worldState;
+            draw(world);
         }
     }
 
